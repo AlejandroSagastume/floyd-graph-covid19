@@ -1,0 +1,59 @@
+# Grafo de ciudades de Guatemala para el algoritmo de Floyd
+# Formato: CiudadOrigen CiudadDestino Distancia(KM)
+# Información tomada del Ministerio de Salud - 12 de mayo 2020
+# Centro de Respuesta al Covid-19 - Distribución de suministros médicos
+
+# Región 1: Guatemala (Capital y alrededores)
+Guatemala Mixco 15
+Mixco Guatemala 15
+Mixco Antigua 30
+Antigua Mixco 30
+Antigua Escuintla 25
+Escuintla Antigua 25
+Escuintla SantaLucia 15
+SantaLucia Escuintla 15
+
+# Región 2: Quetzaltenango y alrededores
+Quetzaltenango Huehuetenango 45
+Huehuetenango Quetzaltenango 45
+Quetzaltenango Totonicapan 20
+Totonicapan Quetzaltenango 20
+Quetzaltenango SanMarcos 35
+SanMarcos Quetzaltenango 35
+
+# Región 3: Izabal y Petén
+Izabal PuertoBarrios 20
+PuertoBarrios Izabal 20
+Izabal LivingStone 25
+LivingStone Izabal 25
+Izabal Peten 60
+Peten Izabal 60
+Peten Flores 15
+Flores Peten 15
+
+# Región 4: Jutiapa y Santa Rosa
+Jutiapa SantaRosa 30
+SantaRosa Jutiapa 30
+Jutiapa Cuilapa 25
+Cuilapa Jutiapa 25
+
+# Región 5: Alta Verapaz y Baja Verapaz
+AltaVerapaz BajaVerapaz 40
+BajaVerapaz AltaVerapaz 40
+AltaVerapaz Salama 50
+Salama AltaVerapaz 50
+BajaVerapaz Salama 25
+Salama BajaVerapaz 25
+
+# Conexiones principales entre regiones
+Guatemala Quetzaltenango 180
+Quetzaltenango Guatemala 180
+Guatemala Izabal 250
+Izabal Guatemala 250
+Guatemala AltaVerapaz 200
+AltaVerapaz Guatemala 200
+Quetzaltenango SanMarcos 35
+Escuintla Jutiapa 85
+Jutiapa Escuintla 85
+Antigua Salama 95
+Salama Antigua 95
