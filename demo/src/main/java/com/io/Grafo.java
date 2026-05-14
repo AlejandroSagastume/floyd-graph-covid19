@@ -11,7 +11,6 @@ import java.util.Map;
  * 
  * @author Alejandro Sagastume
  * @version 1.0
- * @since 2026-05-12
  */
 public class Grafo {
     
