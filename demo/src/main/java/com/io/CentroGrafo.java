@@ -1,5 +1,8 @@
 package com.io;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Clase CentroGrafo: Calcula el centro de un grafo dirigido ponderado
  * usando los resultados del algoritmo de Floyd-Warshall.
@@ -14,7 +17,8 @@ package com.io;
 public class CentroGrafo {
     
     private Floyd floyd;
-    private String[] ciudades;
+    private Grafo grafo;
+    private List<String> ciudades;
     private double[] excentricidades;
     private String centrografo;
     private int totalNodos;
@@ -24,22 +28,28 @@ public class CentroGrafo {
      * Constructor: Calcula el centro del grafo a partir del algoritmo Floyd.
      * 
      * @param floyd Objeto Floyd que contiene las distancias más cortas calculadas
+     * @param grafo Objeto Grafo para obtener los nombres de las ciudades
      * @pre floyd no debe ser nulo y debe haber ejecutado el algoritmo de Floyd
      * @post Se calculan las excentricidades de todos los vértices y se identifica el centro
      */
-    public CentroGrafo(Floyd floyd) {
+    public CentroGrafo(Floyd floyd, Grafo grafo) {
         this.floyd = floyd;
+        this.grafo = grafo;
         this.totalNodos = floyd.obtenerMatrizDistancias().length;
-        this.ciudades = new String[totalNodos];
+        this.ciudades = new ArrayList<>(grafo.obtenerCiudades());
         this.excentricidades = new double[totalNodos];
-        
-        double[][] matrizDistancias = floyd.obtenerMatrizDistancias();
-        
-        for (int i = 0; i < totalNodos; i++) {
-            ciudades[i] = floyd.obtenerMatrizDistancias().length > 0 ? obtenerCiudadPorIndice(i) : null;
-        }
+        this.centrografo = null;
         
         calcularCentro();
+    }
+    
+    /**
+     * Constructor alternativo (compatibilidad hacia atrás)
+     * @param floyd Objeto Floyd
+     * @deprecated Usar constructor con parámetro Grafo
+     */
+    public CentroGrafo(Floyd floyd) {
+        this(floyd, null);
     }
     
     /**
@@ -75,7 +85,7 @@ public class CentroGrafo {
                 
                 if (excentricidadMaxima < minimaExcentricidad) {
                     minimaExcentricidad = excentricidadMaxima;
-                    centrografo = ciudades[i];
+                    centrografo = ciudades.get(i);
                 }
             } else {
                 excentricidades[i] = INFINITO;
@@ -127,11 +137,7 @@ public class CentroGrafo {
      * @return Arreglo de nombres de ciudades
      */
     public String[] obtenerCiudades() {
-        String[] copia = new String[totalNodos];
-        for (int i = 0; i < totalNodos; i++) {
-            copia[i] = ciudades[i];
-        }
-        return copia;
+        return ciudades.toArray(new String[0]);
     }
     
     /**
@@ -141,26 +147,12 @@ public class CentroGrafo {
      * @return El índice de la ciudad, o -1 si no existe
      */
     private int obtenerIndice(String ciudad) {
-        for (int i = 0; i < totalNodos; i++) {
-            if (ciudades[i] != null && ciudades[i].equals(ciudad)) {
+        for (int i = 0; i < ciudades.size(); i++) {
+            if (ciudades.get(i).equals(ciudad)) {
                 return i;
             }
         }
         return -1;
-    }
-    
-    /**
-     * Obtiene el nombre de la ciudad dado su índice.
-     * Método auxiliar para mapear índices a nombres de ciudades.
-     * 
-     * @param indice Índice en la matriz
-     * @return Nombre de la ciudad, o null si el índice es inválido
-     */
-    private String obtenerCiudadPorIndice(int indice) {
-        if (indice >= 0 && indice < totalNodos) {
-            return ciudades[indice];
-        }
-        return null;
     }
     
     /**
@@ -174,9 +166,9 @@ public class CentroGrafo {
         
         for (int i = 0; i < totalNodos; i++) {
             if (excentricidades[i] == INFINITO) {
-                System.out.printf("%-20s %s%n", ciudades[i], "∞");
+                System.out.printf("%-20s %s%n", ciudades.get(i), "∞");
             } else {
-                System.out.printf("%-20s %.1f%n", ciudades[i], excentricidades[i]);
+                System.out.printf("%-20s %.1f%n", ciudades.get(i), excentricidades[i]);
             }
         }
         

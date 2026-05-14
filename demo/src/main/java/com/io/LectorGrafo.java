@@ -41,7 +41,7 @@ public class LectorGrafo {
      * @post Se retorna un grafo completo con nodos y arcos
      */
     public Grafo leerGrafo() throws IOException {
-        try (BufferedReader lector = new BufferedReader(new FileReader("demo/src/main/resources/grafo.txt"))) {
+        try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             Set<String> ciudadesAgregadas = new HashSet<>();
             int numeroLinea = 0;
