@@ -57,17 +57,17 @@ public class Main {
             // Calcular Floyd y centro
             recalcularFloydYCentro();
             
-            System.out.println("\n✓ Grafo cargado exitosamente.");
-            System.out.printf("✓ Total de ciudades: %d%n", grafo.obtenerTotalNodos());
+            System.out.println("\nGrafo cargado exitosamente.");
+            System.out.printf("Total de ciudades: %d%n", grafo.obtenerTotalNodos());
             
             // Mostrar matriz de adyacencia bien formateada
             imprimirMatrizAdyacenciaFormato();
             
         } catch (IOException e) {
-            System.err.println("❌ Error al leer el archivo: " + e.getMessage());
+            System.err.println("Error al leer el archivo: " + e.getMessage());
             System.exit(1);
         } catch (IllegalArgumentException e) {
-            System.err.println("❌ Error en el formato del archivo: " + e.getMessage());
+            System.err.println("Error en el formato del archivo: " + e.getMessage());
             System.exit(1);
         }
     }
@@ -97,9 +97,7 @@ public class Main {
             // Encabezado de bloque
             System.out.print(String.format("%-" + anchoFila + "s", "Ciudad"));
             for (int j = colStart; j < colEnd; j++) {
-                String nombreCorto = ciudades.get(j).length() > 10 ? 
-                                     ciudades.get(j).substring(0, 10) : 
-                                     ciudades.get(j);
+                String nombreCorto = ciudades.get(j).length() > 10 ? ciudades.get(j).substring(0, 10) : ciudades.get(j);
                 System.out.print(String.format("%" + anchoColumna + "s", nombreCorto));
             }
             System.out.println();
@@ -109,9 +107,7 @@ public class Main {
             
             // Filas
             for (int i = 0; i < n; i++) {
-                String nombreFila = ciudades.get(i).length() > 15 ? 
-                                   ciudades.get(i).substring(0, 15) : 
-                                   ciudades.get(i);
+                String nombreFila = ciudades.get(i).length() > 15 ? ciudades.get(i).substring(0, 15) : ciudades.get(i);
                 System.out.print(String.format("%-" + anchoFila + "s", nombreFila));
                 
                 for (int j = colStart; j < colEnd; j++) {
@@ -160,10 +156,10 @@ public class Main {
                     modificarGrafo();
                     break;
                 case 4:
-                    System.out.println("\n✓ Programa finalizado.");
+                    System.out.println("\nPrograma finalizado.");
                     break;
                 default:
-                    System.out.println("❌ Opción inválida. Intente nuevamente.");
+                    System.out.println("Opción inválida. Intente nuevamente.");
             }
             
         } while (opcion != 4);
@@ -217,12 +213,12 @@ public class Main {
         
         // Validar que las ciudades existan
         if (!grafo.existeCiudad(origen)) {
-            System.out.println("❌ Error: La ciudad origen '" + origen + "' no existe en el grafo.");
+            System.out.println("Error: La ciudad origen '" + origen + "' no existe en el grafo.");
             return;
         }
         
         if (!grafo.existeCiudad(destino)) {
-            System.out.println("❌ Error: La ciudad destino '" + destino + "' no existe en el grafo.");
+            System.out.println("Error: La ciudad destino '" + destino + "' no existe en el grafo.");
             return;
         }
         
@@ -268,7 +264,7 @@ public class Main {
                 System.out.println("Volviendo al menú principal...");
                 break;
             default:
-                System.out.println("❌ Opción inválida.");
+                System.out.println("Opción inválida.");
         }
     }
     
@@ -290,13 +286,13 @@ public class Main {
         
         // Validar existencia de ciudades
         if (!grafo.existeCiudad(origen)) {
-            System.out.println("❌ Error: La ciudad origen '" + origen + "' no existe en el grafo.");
+            System.out.println("Error: La ciudad origen '" + origen + "' no existe en el grafo.");
             System.out.println("Ciudades disponibles: " + grafo.obtenerCiudades());
             return;
         }
         
         if (!grafo.existeCiudad(destino)) {
-            System.out.println("❌ Error: La ciudad destino '" + destino + "' no existe en el grafo.");
+            System.out.println("Error: La ciudad destino '" + destino + "' no existe en el grafo.");
             System.out.println("Ciudades disponibles: " + grafo.obtenerCiudades());
             return;
         }
@@ -306,23 +302,23 @@ public class Main {
             double distancia = Double.parseDouble(scanner.nextLine().trim());
             
             if (distancia < 0) {
-                System.out.println("❌ Error: La distancia no puede ser negativa.");
+                System.out.println("Error: La distancia no puede ser negativa.");
                 return;
             }
             
             if (grafo.agregarArco(origen, destino, distancia)) {
-                System.out.printf("\n✓ Arco agregado: %s → %s (%.1f KM)%n", origen, destino, distancia);
+                System.out.printf("\nArco agregado: %s → %s (%.1f KM)%n", origen, destino, distancia);
                 
                 // Recalcular Floyd y centro
                 recalcularFloydYCentro();
-                System.out.println("✓ Floyd y centro del grafo recalculados.");
+                System.out.println("Floyd y centro del grafo recalculados.");
                 
             } else {
-                System.out.println("❌ Error al agregar el arco.");
+                System.out.println("Error al agregar el arco.");
             }
             
         } catch (NumberFormatException e) {
-            System.out.println("❌ Error: Ingrese una distancia válida (número).");
+            System.out.println("Error: Ingrese una distancia válida (número).");
         }
     }
     
@@ -344,24 +340,24 @@ public class Main {
         
         // Validar existencia de ciudades
         if (!grafo.existeCiudad(origen)) {
-            System.out.println("❌ Error: La ciudad origen '" + origen + "' no existe en el grafo.");
+            System.out.println("Error: La ciudad origen '" + origen + "' no existe en el grafo.");
             return;
         }
         
         if (!grafo.existeCiudad(destino)) {
-            System.out.println("❌ Error: La ciudad destino '" + destino + "' no existe en el grafo.");
+            System.out.println("Error: La ciudad destino '" + destino + "' no existe en el grafo.");
             return;
         }
         
         if (grafo.eliminarArco(origen, destino)) {
-            System.out.printf("\n✓ Arco eliminado: %s → %s%n", origen, destino);
+            System.out.printf("\nArco eliminado: %s → %s%n", origen, destino);
             
             // Recalcular Floyd y centro
             recalcularFloydYCentro();
-            System.out.println("✓ Floyd y centro del grafo recalculados.");
+            System.out.println("Floyd y centro del grafo recalculados.");
             
         } else {
-            System.out.println("❌ Error al eliminar el arco. Verifique que exista.");
+            System.out.println("Error al eliminar el arco. Verifique que exista.");
         }
     }
     

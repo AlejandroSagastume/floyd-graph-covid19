@@ -63,8 +63,7 @@ public class FloydTest {
     
     @Test
     public void testObtenerDistanciaCiudadNoExiste() {
-        assertThrows(IllegalArgumentException.class,
-                     () -> floyd.obtenerDistancia("A", "NoExiste"));
+        assertThrows(IllegalArgumentException.class,() -> floyd.obtenerDistancia("A", "NoExiste"));
     }
     
     // ============ PRUEBAS PARA CAMINOS ============
@@ -96,8 +95,7 @@ public class FloydTest {
     
     @Test
     public void testObtenerCaminoCiudadNoExiste() {
-        assertThrows(IllegalArgumentException.class,
-                     () -> floyd.obtenerCamino("A", "NoExiste"));
+        assertThrows(IllegalArgumentException.class,() -> floyd.obtenerCamino("A", "NoExiste"));
     }
     
     // ============ PRUEBAS PARA MATRICES ============

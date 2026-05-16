@@ -64,8 +64,7 @@ public class CentroGrafoTest {
     
     @Test
     public void testObtenerExcentricidadCiudadNoExiste() {
-        assertThrows(IllegalArgumentException.class,
-                     () -> centroGrafo.obtenerExcentricidad("NoExiste"));
+        assertThrows(IllegalArgumentException.class,() -> centroGrafo.obtenerExcentricidad("NoExiste"));
     }
     
     @Test
