@@ -315,7 +315,3 @@ Ambas implementan la misma interfaz conceptual, permitiendo intercambiarlas sin 
 Universidad del Valle de Guatemala  
 Hoja de Trabajo No. 9
 
-## Versión
-
-- **Versión:** 1.0  
-- **Fecha:** 2026-05-16
